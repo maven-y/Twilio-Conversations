@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/callStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connecting..."
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/controlsLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/controlsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/toggleMuteButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/circle_button_background"
+            android:contentDescription="Toggle Mute"
+            android:src="@drawable/ic_mic" />
+
+        <ImageButton
+            android:id="@+id/endCallButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/circle_button_background_red"
+            android:contentDescription="End Call"
+            android:src="@drawable/ic_call_end" />
+
+        <ImageButton
+            android:id="@+id/toggleSpeakerButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/circle_button_background"
+            android:contentDescription="Toggle Speaker"
+            android:src="@drawable/ic_volume_up" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

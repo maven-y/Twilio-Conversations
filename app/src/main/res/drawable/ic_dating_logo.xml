@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="32dp"
+    android:viewportWidth="120"
+    android:viewportHeight="32">
+
+    <!-- Heart Icon -->
+    <path
+        android:fillColor="@color/dating_primary"
+        android:pathData="M16,6C14.9,6 13.9,6.4 13.1,7.1L12,8.2L10.9,7.1C9.3,5.6 6.7,5.6 5.1,7.1C3.5,8.7 3.5,11.3 5.1,12.9L12,19.8L18.9,12.9C20.5,11.3 20.5,8.7 18.9,7.1C18.1,6.4 17.1,6 16,6Z"/>
+
+    <!-- Dating Text -->
+    <path
+        android:fillColor="@color/dating_primary"
+        android:pathData="M28,8L28,24L25,24L25,8L28,8ZM34,8L43,8Q44.5,8 45.25,8.75Q46,9.5 46,11L46,13Q46,14.5 45.25,15.25Q44.5,16 43,16L34,16L34,8ZM37,10L37,14L43,14L43,10L37,10ZM49,8L58,8Q59.5,8 60.25,8.75Q61,9.5 61,11L61,13Q61,14.5 60.25,15.25Q59.5,16 58,16L49,16L49,8ZM52,10L52,14L58,14L58,10L52,10ZM64,8L73,8Q74.5,8 75.25,8.75Q76,9.5 76,11L76,16L73,16L73,11L67,11L67,16L64,16L64,8ZM79,8L88,8Q89.5,8 90.25,8.75Q91,9.5 91,11L91,13Q91,14.5 90.25,15.25Q89.5,16 88,16L79,16L79,8ZM82,10L82,14L88,14L88,10L82,10ZM94,8L103,8Q104.5,8 105.25,8.75Q106,9.5 106,11L106,13Q106,14.5 105.25,15.25Q104.5,16 103,16L94,16L94,8ZM97,10L97,14L103,14L103,10L97,10Z"/>
+</vector>

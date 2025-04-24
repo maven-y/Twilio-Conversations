@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- Primary Video View for Remote Participant -->
+    <com.twilio.video.VideoView
+        android:id="@+id/primaryVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Thumbnail Video View for Local Participant -->
+    <com.twilio.video.VideoView
+        android:id="@+id/thumbnailVideoView"
+        android:layout_width="96dp"
+        android:layout_height="128dp"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Call Status Text -->
+    <TextView
+        android:id="@+id/callStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:padding="8dp"
+        android:text="Connecting..."
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Control Buttons Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Toggle Camera Button -->
+        <ImageButton
+            android:id="@+id/toggleCameraButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/circle_button_background"
+            android:contentDescription="Toggle Camera"
+            android:padding="16dp"
+            android:src="@drawable/ic_videocam"
+            app:tint="@android:color/white" />
+
+        <!-- End Call Button -->
+        <ImageButton
+            android:id="@+id/endCallButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginHorizontal="14dp"
+            android:background="@drawable/circle_button_background_red"
+            android:contentDescription="End Call"
+            android:padding="16dp"
+            android:src="@drawable/ic_call_end"
+            app:tint="@android:color/white" />
+
+        <!-- Toggle Microphone Button -->
+        <ImageButton
+            android:id="@+id/toggleMicButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="14dp"
+            android:background="@drawable/circle_button_background"
+            android:contentDescription="Toggle Microphone"
+            android:padding="16dp"
+            android:src="@drawable/ic_mic"
+            app:tint="@android:color/white" />
+
+        <!-- Toggle Speaker Button -->
+        <ImageButton
+            android:id="@+id/toggleSpeakerButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/circle_button_background"
+            android:contentDescription="Toggle Speaker"
+            android:padding="16dp"
+            android:src="@drawable/ic_volume_up"
+            app:tint="@android:color/white" />
+
+        <!-- Switch Camera Button -->
+        <ImageButton
+            android:id="@+id/switchCameraButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="14dp"
+            android:background="@drawable/circle_button_background"
+            android:contentDescription="Switch Camera"
+            android:padding="16dp"
+            android:src="@drawable/ic_switch_camera"
+            app:tint="@android:color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

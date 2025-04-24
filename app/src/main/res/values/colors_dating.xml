@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme Colors -->
+    <color name="dating_primary">#FF4B6C</color>
+    <color name="dating_primary_dark">#E63E5C</color>
+    <color name="dating_accent">#FF80AB</color>
+    <color name="dating_background">#F8F8F8</color>
+    <color name="dating_surface">#FFFFFF</color>
+    
+    <!-- Action Colors -->
+    <color name="dating_like">#4CAF50</color>
+    <color name="dating_nope">#F44336</color>
+    <color name="dating_super_like">#2196F3</color>
+    <color name="dating_verified">#00BCD4</color>
+    
+    <!-- Text Colors -->
+    <color name="dating_text_primary">#212121</color>
+    <color name="dating_text_secondary">#757575</color>
+    <color name="dating_text_hint">#BDBDBD</color>
+    
+    <!-- Other Colors -->
+    <color name="dating_divider">#EEEEEE</color>
+    <color name="dating_card_shadow">#1A000000</color>
+    
+    <!-- Navigation Colors -->
+    <color name="dating_nav_selected">@color/dating_primary</color>
+    <color name="dating_nav_unselected">@color/dating_text_secondary</color>
+</resources> 

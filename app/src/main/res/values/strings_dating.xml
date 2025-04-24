@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="dating_app_name">Dating App</string>
+
+    <!-- Bottom Navigation -->
+    <string name="dating_discover">Discover</string>
+    <string name="dating_likes">Likes</string>
+    <string name="dating_matches">Matches</string>
+    <string name="dating_chat">Chat</string>
+    <string name="dating_profile">Profile</string>
+
+    <!-- Profile -->
+    <string name="dating_basic_info">Basic Information</string>
+    <string name="dating_about_me">About Me</string>
+    <string name="dating_location">Location</string>
+    <string name="dating_occupation">Occupation</string>
+    <string name="dating_education">Education</string>
+    <string name="dating_interests">Interests</string>
+    
+    <!-- Actions -->
+    <string name="dating_like">Like</string>
+    <string name="dating_nope">Nope</string>
+    <string name="dating_its_match">It\'s a Match!</string>
+    <string name="dating_send_message">Send Message</string>
+    <string name="dating_keep_swiping">Keep Swiping</string>
+
+    <!-- Messages -->
+    <string name="dating_no_more_profiles">No more profiles to show</string>
+    <string name="dating_empty_matches">No matches yet</string>
+    <string name="dating_empty_likes">No likes yet</string>
+</resources> 

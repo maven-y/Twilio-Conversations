@@ -1,0 +1,194 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+android {
+    namespace "com.twilio.conversations.app"
+    compileSdk 35
+    if (findProperty("androidNdkVersion")) {
+        ndkVersion androidNdkVersion // Correct NDK setup is necessary for stripping native symbols in release build
+    }
+    testBuildType System.getProperty('testBuildType', 'debug').toLowerCase()
+    defaultConfig {
+        applicationId "com.twilio.conversations.app"
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "ACCESS_TOKEN_SERVICE_URL", "\"$ACCESS_TOKEN_SERVICE_URL\""
+
+        // Add permissions for Voice and Video
+        manifestPlaceholders = [
+            TWILIO_ACCESS_TOKEN_SERVICE: "$ACCESS_TOKEN_SERVICE_URL"
+        ]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-test-rules.pro'
+
+            // set debuggable flag in order to make it possible for mockito to create mocks in release build.
+            // release apk must be repacked without this flag before publishing
+            debuggable true
+
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+
+                println "release: unstrippedNativeLibsDir \"build/intermediates/merged_native_libs/release/out/lib\""
+                unstrippedNativeLibsDir "build/intermediates/merged_native_libs/release/out/lib"
+            }
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+                println "debug: unstrippedNativeLibsDir \"build/intermediates/merged_native_libs/debug/out/lib\""
+                unstrippedNativeLibsDir "build/intermediates/merged_native_libs/debug/out/lib"
+            }
+        }
+    }
+
+    sourceSets {
+        test {
+            java.srcDirs += "$projectDir/src/sharedTest"
+        }
+        androidTest {
+            java.srcDirs += "$projectDir/src/sharedTest"
+        }
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+        freeCompilerArgs += [
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview"]
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+        unitTests.all {
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
+            }
+        }
+    }
+
+    packagingOptions {
+        exclude '**/attach_hotspot_windows.dll'
+        exclude 'META-INF/licenses/**'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding = true
+        buildConfig = true
+    }
+}
+
+dependencies {
+    // Twilio SDKs
+    implementation "com.twilio:conversations-android-with-symbols:6.0.3"
+    implementation "com.twilio:voice-android:6.3.0"
+    implementation "com.twilio:video-android:7.6.3"
+    
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-datetime:0.2.1"
+
+    // Android
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    
+    // Lifecycle
+    def lifecycle_version = "2.8.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    
+    implementation 'androidx.preference:preference-ktx:1.2.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation 'androidx.emoji:emoji-bundled:1.1.0'
+
+    // Room components
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Material
+    implementation 'com.google.android.material:material:1.12.0'
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.firebase:firebase-messaging:24.1.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.6.2'
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:18.6.2'
+
+    // Support for the new language APIs
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.3'
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    // Razorpay integration
+    implementation 'com.razorpay:checkout:1.6.33'
+}
+
+if (hasProperty("googleServicesJson")) {
+    copy {
+        from(googleServicesJson)
+        into(projectDir)
+    }
+}
+
+// Fix Powermocks on JDK-17: https://stackoverflow.com/questions/69896191/powermock-compatibility-with-jdk-17
+tasks.withType(Test).configureEach {
+    jvmArgs += [
+            '--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED',
+            '--add-opens=java.base/java.util=ALL-UNNAMED',
+            '--add-opens=java.base/java.lang=ALL-UNNAMED',
+            '--add-opens=java.base/java.lang.invoke=ALL-UNNAMED',
+            '--add-opens=java.prefs/java.util.prefs=ALL-UNNAMED',
+            '--add-opens=java.base/java.nio.charset=ALL-UNNAMED',
+            '--add-opens=java.base/java.net=ALL-UNNAMED'
+    ]
+}
+
+tasks.withType(KotlinCompile).configureEach {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+    }
+}

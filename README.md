@@ -6,6 +6,12 @@ Latest available SDK version: [![Maven Central](https://maven-badges.herokuapp.c
 
 [![CircleCI](https://circleci.com/gh/twilio/twilio-conversations-demo-android-kotlin.svg?style=shield)](https://app.circleci.com/pipelines/github/twilio/twilio-conversations-demo-android-kotlin)
 
+
+<img src="https://github.com/maven-y/Twilio-Conversations/blob/fe58cf1ad403aa88ac488f17dfd1fa29fcef7572/Screenshot_20250424_193035.png" alt="Details Screen" width="400"/>
+
+
+
+
 ## Getting Started
 
 Welcome to the Conversations Demo application.  This application demonstrates a basic conversations client application with the ability to create and join conversations, add other participants into the conversations and exchange messages.
